@@ -32,11 +32,14 @@
             this.clmnNameN = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmnBruteForceTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmnGreedyAlgTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmnRes = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.labelSizes = new System.Windows.Forms.Label();
             this.textBoxSizes = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnRun = new System.Windows.Forms.Button();
-            this.clmnRes = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxDiskette = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listViewCompare
@@ -46,9 +49,9 @@
             this.clmnBruteForceTime,
             this.clmnGreedyAlgTime,
             this.clmnRes});
-            this.listViewCompare.Location = new System.Drawing.Point(23, 194);
+            this.listViewCompare.Location = new System.Drawing.Point(23, 158);
             this.listViewCompare.Name = "listViewCompare";
-            this.listViewCompare.Size = new System.Drawing.Size(584, 190);
+            this.listViewCompare.Size = new System.Drawing.Size(630, 226);
             this.listViewCompare.TabIndex = 0;
             this.listViewCompare.UseCompatibleStateImageBehavior = false;
             this.listViewCompare.View = System.Windows.Forms.View.Details;
@@ -68,21 +71,27 @@
             this.clmnGreedyAlgTime.Text = "Время жадного алгоритма";
             this.clmnGreedyAlgTime.Width = 155;
             // 
+            // clmnRes
+            // 
+            this.clmnRes.Text = "Результат";
+            this.clmnRes.Width = 70;
+            // 
             // labelSizes
             // 
             this.labelSizes.AutoSize = true;
-            this.labelSizes.Location = new System.Drawing.Point(20, 68);
+            this.labelSizes.Location = new System.Drawing.Point(160, 54);
             this.labelSizes.Name = "labelSizes";
-            this.labelSizes.Size = new System.Drawing.Size(120, 17);
+            this.labelSizes.Size = new System.Drawing.Size(125, 17);
             this.labelSizes.TabIndex = 1;
-            this.labelSizes.Text = "Размеры дискет:";
+            this.labelSizes.Text = "Размеры файлов:";
             // 
             // textBoxSizes
             // 
-            this.textBoxSizes.Location = new System.Drawing.Point(23, 88);
+            this.textBoxSizes.Location = new System.Drawing.Point(163, 74);
             this.textBoxSizes.Name = "textBoxSizes";
-            this.textBoxSizes.Size = new System.Drawing.Size(584, 22);
+            this.textBoxSizes.Size = new System.Drawing.Size(490, 22);
             this.textBoxSizes.TabIndex = 2;
+            this.textBoxSizes.Text = "9 8 6 5 4 2";
             this.textBoxSizes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxSizes_KeyPress);
             // 
             // label1
@@ -96,23 +105,48 @@
             // 
             // btnRun
             // 
-            this.btnRun.Location = new System.Drawing.Point(428, 116);
+            this.btnRun.Location = new System.Drawing.Point(474, 102);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(179, 27);
             this.btnRun.TabIndex = 4;
             this.btnRun.Text = "Найти решение";
             this.btnRun.UseVisualStyleBackColor = true;
+            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 
-            // clmnRes
+            // label2
             // 
-            this.clmnRes.Text = "Результат";
-            this.clmnRes.Width = 70;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(120, 17);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Размер дискеты:";
+            // 
+            // textBoxDiskette
+            // 
+            this.textBoxDiskette.Location = new System.Drawing.Point(23, 74);
+            this.textBoxDiskette.Name = "textBoxDiskette";
+            this.textBoxDiskette.Size = new System.Drawing.Size(117, 22);
+            this.textBoxDiskette.TabIndex = 6;
+            this.textBoxDiskette.Text = "10";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(20, 138);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(187, 17);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Время - количество тактов";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 407);
+            this.ClientSize = new System.Drawing.Size(682, 407);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBoxDiskette);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxSizes);
@@ -136,6 +170,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ColumnHeader clmnRes;
         private System.Windows.Forms.Button btnRun;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxDiskette;
+        private System.Windows.Forms.Label label3;
     }
 }
 

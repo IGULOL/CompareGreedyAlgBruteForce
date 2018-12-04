@@ -9,10 +9,11 @@ namespace CompareGreedyAlgBruteForce
     //перебор
     class BruteForce
     {
-        public static int FindRes(int[] sizes, int capacity, out long time)
+        public int FindRes(int[] files, int capacity, out long time)
         {
-            int res;
             long msBefore = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+            int[] diskettes = new int[files.Length];
+            
 
 
 
@@ -20,7 +21,7 @@ namespace CompareGreedyAlgBruteForce
 
             long msAfter = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             time = msAfter - msBefore;
-            return res;
+            return diskettes.Length;
         }
     }
 }

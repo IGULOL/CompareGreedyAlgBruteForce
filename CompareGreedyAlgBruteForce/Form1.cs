@@ -17,23 +17,20 @@ namespace CompareGreedyAlgBruteForce
 {
     public partial class MainForm : Form
     {
+        int greedyAlg;
+        int bruteForce;
+
         public MainForm()
         {
             InitializeComponent();
         }
 
-        public void ShowRes(int N, int time, int time2, int res)
+        public void ShowRes(int N, long time, long time2, int res)
         {
             ListViewItem newItem;
 
             newItem = new ListViewItem(Convert.ToString(N));
-            newItem.SubItems.Add(Convert.ToString(N));
             newItem.SubItems.Add(Convert.ToString(time));
-            newItem.SubItems.Add(Convert.ToString(res));
-            listViewCompare.Items.Add(newItem);
-
-            newItem = new ListViewItem(Convert.ToString(N));
-            newItem.SubItems.Add(Convert.ToString(N));
             newItem.SubItems.Add(Convert.ToString(time2));
             newItem.SubItems.Add(Convert.ToString(res));
             listViewCompare.Items.Add(newItem);
@@ -46,6 +43,35 @@ namespace CompareGreedyAlgBruteForce
                 e.Handled = true;
         }
 
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+            if ((textBoxSizes.Text == "") || (textBoxDiskette.Text == ""))
+            {
+                MessageBox.Show("Введите размеры файлов дискет.", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                int[] files = null;
+                try
+                {
+                    files = textBoxSizes.Text.Split(' ').Where(x => !string.IsNullOrWhiteSpace(x)).
+                        Select(x => int.Parse(x)).ToArray();                    
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ошибка при вводе чисел.", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                long time = 0;
+                long time2 = 0;
+
+                greedyAlg = GreedyAlg.FindRes(files, int.Parse(textBoxDiskette.Text), out time2);
+                //bruteForce = new BruteForce().FindRes(files, int.Parse(textBoxDiskette.Text), out time2);
+
+                ShowRes(files.Length, time, time2, greedyAlg);
+                
+            }
+        }
 
     }
 }
