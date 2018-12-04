@@ -25,7 +25,7 @@ namespace CompareGreedyAlgBruteForce
             InitializeComponent();
         }
 
-        public void ShowRes(int N, long time, long time2, int res)
+        public void ShowRes(int N, long time, long time2, int res, int res2)
         {
             ListViewItem newItem;
 
@@ -33,6 +33,7 @@ namespace CompareGreedyAlgBruteForce
             newItem.SubItems.Add(Convert.ToString(time));
             newItem.SubItems.Add(Convert.ToString(time2));
             newItem.SubItems.Add(Convert.ToString(res));
+            newItem.SubItems.Add(Convert.ToString(res2));
             listViewCompare.Items.Add(newItem);
         }
 
@@ -68,7 +69,7 @@ namespace CompareGreedyAlgBruteForce
                 bruteForce = BruteForce.FindRes(files, int.Parse(textBoxDiskette.Text), out time);
                 greedyAlg = GreedyAlg.FindRes(files, int.Parse(textBoxDiskette.Text), out time2);                
 
-                ShowRes(files.Length, time, time2, greedyAlg);
+                ShowRes(files.Length, time, time2, bruteForce, greedyAlg);
                 
             }
         }

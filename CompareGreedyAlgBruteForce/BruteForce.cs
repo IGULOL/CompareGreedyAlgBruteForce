@@ -18,9 +18,7 @@ namespace CompareGreedyAlgBruteForce
             stopWatch.Start();
 
             List<int> diskettes = new List<int>(1);
-
-            //сортируем файлы по возрастанию 
-            Array.Sort(file);
+            
             //проверяем есть ли файлы больше размера дискеты
             if (file[file.Length - 1] > capacity)
             {
@@ -37,7 +35,7 @@ namespace CompareGreedyAlgBruteForce
                 files[0, i] = file[i];
             }
 
-            for (int i = (file.Length - 1); i >= 0; i--)
+            for (int i = 0; i < file.Length; i++)
             {
                 //смотрим куда можно положить
                 for (int j = 0; j < diskettes.Count; j++)
