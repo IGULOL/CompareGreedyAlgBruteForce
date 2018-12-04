@@ -65,8 +65,8 @@ namespace CompareGreedyAlgBruteForce
                 long time = 0;
                 long time2 = 0;
 
-                greedyAlg = GreedyAlg.FindRes(files, int.Parse(textBoxDiskette.Text), out time2);
-                //bruteForce = new BruteForce().FindRes(files, int.Parse(textBoxDiskette.Text), out time2);
+                bruteForce = BruteForce.FindRes(files, int.Parse(textBoxDiskette.Text), out time);
+                greedyAlg = GreedyAlg.FindRes(files, int.Parse(textBoxDiskette.Text), out time2);                
 
                 ShowRes(files.Length, time, time2, greedyAlg);
                 

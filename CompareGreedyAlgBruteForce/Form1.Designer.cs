@@ -91,7 +91,7 @@
             this.textBoxSizes.Name = "textBoxSizes";
             this.textBoxSizes.Size = new System.Drawing.Size(490, 22);
             this.textBoxSizes.TabIndex = 2;
-            this.textBoxSizes.Text = "9 8 6 5 4 2";
+            this.textBoxSizes.Text = "9 8 6 5 4 2 ";
             this.textBoxSizes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxSizes_KeyPress);
             // 
             // label1
