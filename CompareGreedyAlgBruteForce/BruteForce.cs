@@ -10,7 +10,64 @@ namespace CompareGreedyAlgBruteForce
     //перебор
     class BruteForce
     {
-        public static int FindRes(int[] file, int capacity, out long time)
+        private static void Swap(ref int[] a, int i, int j)
+        {
+            int s = a[i];
+            a[i] = a[j];
+            a[j] = s;
+        }
+
+        //следующая перестановка
+        private static bool NextSet(ref int[] a, int n)
+        {
+            int j = n - 2;
+            while (j != -1 && a[j] >= a[j + 1])
+            {
+                j--;
+            }
+            if (j == -1)
+            {
+                return false; //больше перестановок нет
+            }
+            int k = n - 1;
+            while (a[j] >= a[k])
+            {
+                k--;
+            }
+            Swap(ref a, j, k);
+            int l = j + 1;   //сортируем оставшуюся часть последовательности
+            int r = n - 1; 
+            while (l < r)
+            {
+                Swap(ref a, l++, r--);
+            }
+            return true;
+        }
+
+        //проверить во сколько ящиков влезут дискеты в заданном порядке
+        private static int Check(int[] files, int capacity)
+        {
+            int res = 1;
+
+            int diskette = 0;
+
+            for (int i = 0; i < files.Length; i++)
+            {
+                if (diskette <= capacity)
+                {
+                    diskette += files[i];
+                }     
+                else
+                {
+                    diskette = 0;
+                    res++;
+                }  
+            }
+
+            return res;
+        }
+
+        public static int FindRes(int[] files, int capacity, out long time)
         {
             time = 0;
 
@@ -18,48 +75,34 @@ namespace CompareGreedyAlgBruteForce
             stopWatch.Start();
 
             List<int> diskettes = new List<int>(1);
-            
+
             //проверяем есть ли файлы больше размера дискеты
-            if (file[file.Length - 1] > capacity)
+            for (int i = 0; i < files.Length; i++)
             {
-                return 0;
+                if (files[i] > capacity)
+                    return 0;
             }
 
-            //создаем двумерный массив
-            //в котором будет содержаться информация
-            //был ли использован файл или нет
-            int[,] files = new int[2, file.Length];
+            //формируем первую перестановку
+            int n = files.Length;
+            NextSet(ref files, n);           
+            int min = Check(files, capacity);
 
-            for (int i = 0; i < file.Length; i++)
+            //пока есть переставноки, ищем минимальную
+            int res;
+            while (NextSet(ref files, n))
             {
-                files[0, i] = file[i];
-            }
-
-            for (int i = 0; i < file.Length; i++)
-            {
-                //смотрим куда можно положить
-                for (int j = 0; j < diskettes.Count; j++)
+                res = Check(files, capacity);
+                if (res < min)
                 {
-                    //если нашли куда положить
-                    if (diskettes[j] + files[0, i] <= capacity)
-                    {
-                        diskettes[j] += files[0, i];
-                        files[1, i] = 1;
-                        continue;
-                    }
-                }
-                //если не нашли куда положить
-                if (files[1, i] == 0)
-                {
-                    diskettes.Add(files[0, i]);
-                    files[1, i] = 1;
+                    min = res;
                 }
             }
 
             stopWatch.Stop();
             time = stopWatch.ElapsedTicks;
 
-            return diskettes.Count;
+            return min;
         }
     }
 }

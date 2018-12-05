@@ -67,10 +67,16 @@ namespace CompareGreedyAlgBruteForce
                 long time2 = 0;
 
                 bruteForce = BruteForce.FindRes(files, int.Parse(textBoxDiskette.Text), out time);
-                greedyAlg = GreedyAlg.FindRes(files, int.Parse(textBoxDiskette.Text), out time2);                
-
-                ShowRes(files.Length, time, time2, bruteForce, greedyAlg);
+                greedyAlg = GreedyAlg.FindRes(files, int.Parse(textBoxDiskette.Text), out time2);         
                 
+                if ((bruteForce == 0) || (greedyAlg == 0))
+                {
+                    MessageBox.Show("Алгоритмы не дали результатов.", "Увы!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    ShowRes(files.Length, time, time2, bruteForce, greedyAlg);
+                }               
             }
         }
 
